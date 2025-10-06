@@ -29,6 +29,9 @@
             gap: 15px;
             max-width: 400px;
         }
+        .full-width {
+            grid-column: 1 / -1;
+        }
         .control-group {
             display: flex;
             flex-direction: column;
@@ -64,6 +67,16 @@
         button:hover {
             background: #357abd;
         }
+        .toggle-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .toggle-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
         .value-display {
             font-size: 12px;
             color: #999;
@@ -81,6 +94,11 @@
                 <span class="value-display" id="progress-value">30%</span>
             </div>
             <div class="control-group">
+                <label for="ring-width">Ring Width</label>
+                <input type="range" id="ring-width" min="5" max="40" value="20">
+                <span class="value-display" id="ring-width-value">20px</span>
+            </div>
+            <div class="control-group">
                 <label for="progress-color">Progress Color</label>
                 <input type="color" id="progress-color" value="#4a90e2">
             </div>
@@ -92,7 +110,21 @@
                 <label for="text-color">Text Color</label>
                 <input type="color" id="text-color" value="#333333">
             </div>
-            <button id="download-btn">Download as SVG</button>
+            <div class="control-group">
+                <label>Chart Type</label>
+                <div class="toggle-group">
+                    <input type="checkbox" id="dial-mode">
+                    <span class="value-display">Full Circle</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Round Ends</label>
+                <div class="toggle-group">
+                    <input type="checkbox" id="round-ends" checked>
+                    <span class="value-display">Rounded</span>
+                </div>
+            </div>
+            <button id="download-btn" class="full-width">Download as SVG</button>
         </div>
     </div>
 
@@ -101,7 +133,7 @@
         const width = 200;
         const height = 200;
         const radius = 80;
-        const strokeWidth = 20;
+        let strokeWidth = 20;
 
         // Create SVG
         const svg = d3.select("#progress-chart")
@@ -143,26 +175,44 @@
             .style("fill", "#333333");
 
         // Update function
-        function updateProgress(progress, progressColor, backgroundColor, textColor) {
-            const angle = (progress / 100) * 2 * Math.PI;
+        function updateProgress(progress, progressColor, backgroundColor, textColor, ringWidth, roundEnds, dialMode) {
+            strokeWidth = ringWidth;
+            const startAngle = dialMode ? -Math.PI / 2 - Math.PI / 4 : 0;
+            const totalAngle = dialMode ? Math.PI + Math.PI / 2 : 2 * Math.PI;
+            const progressAngle = startAngle + (progress / 100) * totalAngle;
+            
+            // Update arc definitions with new ring width
+            backgroundArc
+                .innerRadius(radius - strokeWidth / 2)
+                .outerRadius(radius + strokeWidth / 2)
+                .startAngle(startAngle)
+                .endAngle(startAngle + totalAngle);
+            
+            progressArc
+                .innerRadius(radius - strokeWidth / 2)
+                .outerRadius(radius + strokeWidth / 2)
+                .startAngle(startAngle)
+                .cornerRadius(roundEnds ? strokeWidth / 2 : 0);
             
             backgroundPath
                 .transition()
                 .duration(300)
+                .attr("d", backgroundArc)
                 .attr("fill", backgroundColor);
             
             progressPath
                 .transition()
                 .duration(500)
                 .attrTween("d", function() {
+                    const currentAngle = progressPath.attr("data-angle") || startAngle;
                     const interpolate = d3.interpolate(
-                        progressPath.attr("data-angle") || 0,
-                        angle
+                        parseFloat(currentAngle),
+                        progressAngle
                     );
                     return function(t) {
-                        const currentAngle = interpolate(t);
-                        progressPath.attr("data-angle", currentAngle);
-                        return progressArc.endAngle(currentAngle)();
+                        const angle = interpolate(t);
+                        progressPath.attr("data-angle", angle);
+                        return progressArc.endAngle(angle)();
                     };
                 })
                 .attr("fill", progressColor);
@@ -181,26 +231,45 @@
 
         // Event listeners
         const progressInput = document.getElementById("progress");
+        const ringWidthInput = document.getElementById("ring-width");
         const progressColorInput = document.getElementById("progress-color");
         const backgroundColorInput = document.getElementById("background-color");
         const textColorInput = document.getElementById("text-color");
+        const roundEndsInput = document.getElementById("round-ends");
+        const dialModeInput = document.getElementById("dial-mode");
         const progressValueDisplay = document.getElementById("progress-value");
+        const ringWidthValueDisplay = document.getElementById("ring-width-value");
         const downloadBtn = document.getElementById("download-btn");
 
         function updateChart() {
             const progress = parseInt(progressInput.value);
+            const ringWidth = parseInt(ringWidthInput.value);
             const progressColor = progressColorInput.value;
             const backgroundColor = backgroundColorInput.value;
             const textColor = textColorInput.value;
+            const roundEnds = roundEndsInput.checked;
+            const dialMode = dialModeInput.checked;
             
             progressValueDisplay.textContent = progress + "%";
-            updateProgress(progress, progressColor, backgroundColor, textColor);
+            ringWidthValueDisplay.textContent = ringWidth + "px";
+            updateProgress(progress, progressColor, backgroundColor, textColor, ringWidth, roundEnds, dialMode);
         }
 
         progressInput.addEventListener("input", updateChart);
+        ringWidthInput.addEventListener("input", updateChart);
         progressColorInput.addEventListener("input", updateChart);
         backgroundColorInput.addEventListener("input", updateChart);
         textColorInput.addEventListener("input", updateChart);
+        roundEndsInput.addEventListener("change", function() {
+            this.parentElement.querySelector('.value-display').textContent = 
+                this.checked ? "Rounded" : "Flat";
+            updateChart();
+        });
+        dialModeInput.addEventListener("change", function() {
+            this.parentElement.querySelector('.value-display').textContent = 
+                this.checked ? "Dial Gauge" : "Full Circle";
+            updateChart();
+        });
 
         // Download function
         downloadBtn.addEventListener("click", function() {
@@ -219,7 +288,7 @@
         });
 
         // Initialize
-        updateProgress(30, "#4a90e2", "#e0e0e0", "#333333");
+        updateProgress(30, "#4a90e2", "#e0e0e0", "#333333", 20, true, false);
     </script>
 </body>
 </html>
