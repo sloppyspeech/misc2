@@ -84,3 +84,24 @@ With this data, you can go to SG Paris with a clear problem statement and a solu
     * **Improve Efficiency:** While not a complete solution, highlight any steps you are taking to be more efficient, such as creating reusable test scripts, automating parts of the UAT process, or improving the triage workflow with NPW and Snowflake.
 
 By following this estimation model, you are no longer saying "I think I need more people." You are demonstrating *why*, *how many*, and *when* you need them, backed by a clear analysis of the project plan.
+
+
+
+
+
+
+Okay, here is the risks and mitigations table in a pipe-separated format as requested:
+
+```
+Risk Category         | Specific Risk                                                               | Probability | Severity | Mitigation Strategy
+----------------------|-----------------------------------------------------------------------------|-------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------
+**Resource & Staffing**| Insufficient MGF staff for parallel SIT/UAT/Parallel Run.                  | **High** | **High** | **Proactive Resource Review:** Re-estimate MGF staffing needs based on parallel SIT model & Lot timelines. Engage management for additional hiring/allocation.
+                      | Delays in NPW SIT resource availability or performance.                      | **Medium** | **Medium** | **Joint Team Model:** MGF support embedded with NPW. Clear JIRA process for error resolution. Performance SLAs for NPW.
+**Dependency** | Delays in Application Teams providing KT or Definition of Done.            | **Medium** | **Medium** | **Dedicated Engagement:** Scheduled KT sessions, clear communication channels, formal sign-off process. Escalation matrix for non-compliance.
+**Technical** | Complex legacy Spark/Scala/Python code conversion to Snowpark.             | **High** | **High** | **Snowflake Expertise:** Dedicated Snowflake team for code conversion. Robust peer review. POCs for complex patterns.
+                      | Data mismatch or quality issues between Big Data/Teradata and Snowflake.   | **High** | **High** | **Robust Comparator:** Deploy data comparator tool (NPW/MGF). Standardized SIT/UAT process. Clear error logging & resolution.
+                      | Scheduler (CTRL-M) or Shell script compatibility/migration issues.         | **Medium** | **Medium** | **Technical Deep Dive:** Early assessment of scheduling scripts. Dedicated "Technical Enablers" MGF team for framework/automation.
+**Timeline** | Inability to run SIT/UAT on multiple applications in parallel within a Lot. | **Medium** | **High** | **Parallel SIT Model:** Implement Feature Teams (MGF+NPW) for concurrent processing. Clear definition of app batches per team.
+                      | Aggressive Lot target dates leading to rushed testing/deployments.          | **High** | **High** | **Continuous Monitoring:** Daily stand-ups. Risk-based testing. Clear Go/No-Go criteria. Early identification of Lot blockers.
+**Process** | Inefficient error resolution cycle between NPW and MGF.                      | **Medium** | **Medium** | **Streamlined JIRA Workflow:** Defined SLAs for fix/retest. Regular syncs between NPW and MGF.
+```
