@@ -105,3 +105,83 @@ Risk Category         | Specific Risk                                           
                       | Aggressive Lot target dates leading to rushed testing/deployments.          | **High** | **High** | **Continuous Monitoring:** Daily stand-ups. Risk-based testing. Clear Go/No-Go criteria. Early identification of Lot blockers.
 **Process** | Inefficient error resolution cycle between NPW and MGF.                      | **Medium** | **Medium** | **Streamlined JIRA Workflow:** Defined SLAs for fix/retest. Regular syncs between NPW and MGF.
 ```
+
+
+This is a great request for an executive summary\! I'll create two versions of the CIO update slide: a concise **Progress & Status** view and a more focused **Risks & Mitigation (Staffing Focus)** view, along with the requested staffing estimation methodology.
+
+-----
+
+## Executive Summary Slide: Version 1 - Progress & Status
+
+| **Project** | **Big Data to Snowflake Migration (115 Apps)** |
+| :--- | :--- |
+| **Objective** | Migrate 115 Big Data Applications (Spark/Scala/Python) to Snowflake/Snowpark. |
+| **Status** | 🟢 **On Track** for Lot 1. Migration Factory (MGF) is engaged. |
+| **Key Metrics** | **Total Apps:** 115 (100%) $\quad$ **Apps in SIT/UAT (Lot 1):** 3 (2.6%) $\quad$ **Target Completion:** Q1 2026 |
+| **Recent Accomplishments** | - Established collaboration model (Snowflake/NPW/MGF/App Teams).<br>- Lot 1 apps (**AFD, CBA, TNM**) completed code conversion and entered SIT phase. |
+| **Key Dates** | **Lot 1 Completion:** Sep 19, 2025 (On target)<br>**Lot 2 Completion:** Nov 24, 2025 (High Volume Lot - **14 Apps**)<br>**Overall Completion:** Apr 20, 2026 |
+| **Staffing & Risk** | Current MGF capacity (**9 FTEs**) is a **high-priority risk** to meeting parallel testing demands for high-volume Lots (e.g., Lot 2, 6, 7). **Immediate capacity estimation required.** |
+| **Next Steps** | 1. **Focus:** Successful completion of Lot 1 SIT/UAT/Go-Live.<br>2. **Action:** Finalize MGF capacity analysis and secure additional resources as needed to support Lot 2 and beyond. |
+
+-----
+
+## Executive Summary Slide: Version 2 - Risks & Mitigation (Staffing Focus)
+
+| **Project** | **Big Data to Snowflake Migration (115 Apps)** |
+| :--- | :--- |
+| **Focus Area** | **MGF Capacity & Delivery Throughput** |
+| **Objective** | Assess and secure optimal staffing for the Migration Factory (MGF) to execute parallel SIT/UAT and meet the migration schedule. |
+| **MGF Mandate** | SIT Assistance, UAT Execution, Parallel Run Support, Production Switch. |
+| **Current State** | **9 FTEs** in MGF. Lot 1 (**3 Apps**) on track. Upcoming Lots (2, 6, 7) involve **14 to 21 Apps** concurrently entering SIT/UAT. |
+| **Risk: Delivery Schedule** | 🔴 **High Risk.** Current MGF staffing is likely insufficient to support the planned parallel testing within Lots 2, 6, and 7, which contain 52% of the total applications. This risks schedule slippage. |
+| **Mitigation Strategy** | - **Quantify:** Estimate MGF effort per application/job to determine required FTEs per Lot's testing period. (See Estimation below).<br>- **Action:** Propose incremental staffing additions aligned with Lot volume (e.g., resources needed for Lot 2, then Lot 7 peak). |
+| **Ask for CIO** | **Approve immediate capacity estimation methodology** and authorize budget for resource augmentation based on the projected need to maintain the migration schedule. |
+
+-----
+
+## MGF Staffing Estimation Methodology
+
+To estimate if 9 people are enough, you need to convert the defined activities (SIT Assist, UAT, Parallel Run, Production Switch) into a quantifiable **time-per-application** metric and compare it against the total required effort in a given timeframe (Lot duration).
+
+### 1\. Define Effort per Application (App)
+
+First, estimate the average time (in person-days or FTE-days) the MGF team spends on all activities for **one application**. This is the most crucial step.
+
+| **MGF Activity** | **Assumption/Scope** | **Estimated Effort (Days/App)** |
+| :--- | :--- | :--- |
+| **SIT Assistance** | Assisting NPW (External Vendor) with issue triage, coordination, JIRA updates, re-testing support until "Definition of Done" is met. | $T_{SIT}$ (e.g., 3-5 days) |
+| **UAT Execution** | Independent UAT run by MGF, gathering App Team sign-off. | $T_{UAT}$ (e.g., 2-4 days) |
+| **Parallel Run Support** | Monitoring/triage for the parallel run phase. | $T_{PR}$ (e.g., 1-2 days) |
+| **Production Switch** | Cutover support. | $T_{P S}$ (e.g., 0.5-1 day) |
+| **Total MGF Effort per App ($E_{App}$)** | | **$T_{SIT} + T_{UAT} + T_{PR} + T_{PS}$** (e.g., **6.5 - 12 days**) |
+
+*Note: For a more granular estimate, this effort can be broken down by average **Jobs per App** (e.g., an App with 20 jobs takes more effort than one with 5).*
+
+### 2\. Calculate Required Effort per Lot
+
+Use the **Total MGF Effort per App** ($E_{App}$) and the number of applications in each lot ($N_{Lot}$) to find the total effort required per Lot.
+
+$$Total\ Effort_{Lot} = E_{App} \times N_{Lot}$$
+
+### 3\. Calculate Available Capacity per Lot
+
+Determine the available working days for the current 9 MGF FTEs during the Lot's duration ($D_{Lot}$).
+
+$$Available\ Capacity_{Lot} = 9\ FTEs \times D_{Lot}$$
+*(Adjust for holidays and planned leave to get actual working days.)*
+
+### 4\. Compare and Determine Need
+
+The key is to compare the **Required Effort** against the **Available Capacity**.
+
+| Lot | Apps ($N_{Lot}$) | Duration ($D_{Lot}$) | Available Capacity (e.g., 9 FTEs x $D_{Lot}$) | Required Effort (e.g., $N_{Lot}$ x $E_{App}$) | **Gap (Need)** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Lot 1** | 3 | $\approx 20$ days | $\approx 180$ person-days | $3 \times E_{App}$ | Likely **sufficient** |
+| **Lot 2** | 14 | $\approx 30$ days | $\approx 270$ person-days | $14 \times E_{App}$ | **Potential Gap** (If $E_{App}$ is high) |
+| **Lot 7** | 21 | $\approx 45$ days | $\approx 405$ person-days | $21 \times E_{App}$ | **High Risk** (Likely requires $\uparrow$ FTEs) |
+
+$$\text{Required Additional FTEs} = \frac{(Required\ Effort_{Lot} - Available\ Capacity_{Lot})}{D_{Lot}}$$
+
+### Conclusion on Staffing
+
+Based on the significantly larger Lot sizes and short timelines, particularly for **Lot 2 (14 Apps), Lot 6 (21 Apps), and Lot 7 (21 Apps)**, it is highly probable that **9 people will be insufficient** to run parallel SIT/UAT testing across multiple applications within the target dates. A detailed estimation using the methodology above is mandatory to quantify the exact resource requirement and prevent schedule delays.
