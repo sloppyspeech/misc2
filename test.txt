@@ -1,10 +1,10 @@
-#,Action Item,Owner,Target Date,Notes
-AI 1.1,Develop a strategy to catch up the Lot 2 SIT delay (especially for LDH applications).,[Your Name/Presenter],Early Next Week,Requires discussion with Linda.
-AI 1.2,"Schedule a meeting to discuss the delay, mitigation strategy, and impact with Linda and Aurora.",[Your Name/Presenter],Next Week,Aurora must be included for LDH-related impacts.
-AI 1.3,"Update the Roadmap visualization to clearly show Initial Plan vs. Re-baseline/Forecast dates for all lots (L2, L3, L4) to visually represent the slip page.",[Your Name/Presenter],Before Next Status Meeting,
-AI 2.1,"Propose a solution for the PES 14-table column size blocker (30-char limit) by discussing with the IGD Team (for tool enhancement) and/or finding an alternative approach (e.g., using Deepa).",[Your Name/Presenter],Ongoing/Urgent,"Escalate to relevant contact (e.g., James/Veronica upon return, Antoine Mavre, etc.)."
-AI 2.2,Finalize the plan and start UAT for Lot 1 next week. This requires Lawrence Rukies and Saber's team to complete the production reference (Prod Ref) setup in the Snowflake UAT environment.,[Your Name/Presenter] (Follow-up),Early Next Week,Follow up with Lawrence Rukies/Saber.
-AI 2.3,Follow up with PTO/Andrea on getting the new share access for retrieving DDLs for Lot 2 SIT preparation.,[Your Name/Presenter],Next Week,Goal is to receive access by end of next week.
-AI 3.1,"Establish a daily coordination call and dedicated Teams channel among all involved teams (Paris, Bangalore, etc.) for the manual data loading steps (until automation is complete) to ensure quick handoffs and eliminate latency.",[Your Name/Presenter],Immediate,"Ensure a ""relay"" mindset for rapid response on manual tasks (Steps 1-8)."
-AI 3.2,"Work with Linda to finalize the list of missing applications (e.g., QDE) and their conversion scope/estimation.",[Your Name/Presenter],Ongoing,Use this estimation to negotiate with the Snowflake team for conversion support.
-AI 3.3,"Discuss the KPEX/Migration Factory size reinforcement proposal to catch up the delay and cover the increased scope (SIT execution, interop, missing apps).",[Your Name/Presenter] & Olivier,Next Discussion,Formalize the proposal and discuss funding/approval.
+#,Topic,Action Item,Owner,Target Date/Notes
+1.,GPS Controls,"Add next level validators in the GPS controls, ensuring next level reviews the controls for rigor and understanding.",TBD,Ongoing/Immediate
+2.,Workflow Change,Change the workflow so the next level also validates it.,TBD,Ongoing/Immediate
+3.,P1 Categorization,Send out a mail to Jai awaiting his approval for the P1 categorization process.,Smita,ASAP
+4.,MUSE SLAs,"Miyazaki to work with Sunil on explaining to end-users and coming back with realistic SLAs (Service Level Agreements), not arbitrary demands for the homologation environment.",Sunil/Miyazaki,TBD
+5.,MUSE Chain Optimization,"Evaluate and optimize the whole chain (file arrival to processing to send out) for the new Lucid setup, as it is currently slower than the COBOL setup.",Smita (with Sunil and Yam),Provide findings in November
+6.,Olaf Migration,Work with Linda and Aurora in Paris to assess the impact of the one-month delay on the Lot 3-5 (RDH) applications and devise a plan to get things back on track.,TBD,ASAP
+7.,Olaf Re-planning,Re-evaluate and re-plan Lots 3-5 to set a more realistic date to achieve parallel run by January.,TBD,ASAP
+8.,New Hires,Start the process to roll out the five new hires approved by Olivia for Q1 2026.,TBD,Soon
+9.,Replacement Plan,"Continue to brainstorm replacement strategy (for exits like Gayathri Rath) by exploring movement to new CDS needs (e.g., Pay, RFC) or structuring work through Olaf/Miyazaki to create post-project run roles.",Santosh/Ravi,Ongoing
