@@ -1,0 +1,43 @@
+Theme	Core Objective	Primary KPIs for Measurement
+Delivery & Execution	Recover & Secure Critical Path: Pivot from technical prep to full-scale delivery, recovering the current "Amber" status to hit July 2026 Go-Live.	
+
+• Go-Live: 100% of critical scope delivered by July 2026.
+
+• Migration Velocity: Sustain 60+ tables/day (up from 45) by end of Q1.
+
+• Milestone Adherence: >90% of L1 milestones hit within +/- 2 weeks of baseline.
+Problem Management	Aggressive Blocker Removal: Rapidly resolve high-impact infrastructure and vendor blockers that are stalling the SIT/UAT phases.	
+
+• Resolution Time: Avg. resolution of <5 days for RED blockers.
+
+• Vendor Success: Clear "SnowConvert" blocker by Feb 28th.
+
+• Platform Stability: 50% reduction in LUCID platform-related delays by Q2.
+Quality & Testing	Enable Data-Driven Testing: Transition SIT/UAT from "Technical Tests" to "Functional Validation" by ensuring data availability.	
+
+• UAT Unblocking: Start Functional UAT with actual data by [Target Date].
+
+• Testing Velocity: Reach planned trend curve (currently 14%) within 60 days of data load recovery.
+
+• Interop Completion: 100% SGI validation for Teradata by March.
+Financials & Resources	Optimize Team & Budget: Close the 4-person headcount gap and resolve the Capex constraints currently cited as bottlenecks.	
+
+• Hiring: Fill 100% of open MGF positions (4 vacancies) by end of Q1.
+
+• Capex Approval: Secure 100% of necessary funding to unblock infrastructure in next Steerco.
+
+• Budget Variance: Manage spend within +/- 5% of approved 2026 budget.
+Stakeholder Management	Executive Influence & Alignment: Move from "Reporting" to "Influencing" to ensure senior leadership is unblocking the team.	
+
+• Decision Velocity: 90% of Steerco "Asks" resolved within one meeting cycle.
+
+• Engagement Score: No "surprises" registered by Business Stakeholders during monthly reviews.
+
+• Vendor Interlock: 100% attendance at weekly exec-level vendor interlocks until blockers clear.
+Governance	Rigorous Oversight & Control: Maintain high-fidelity reporting and prevent scope creep during the high-pressure run-up to Go-Live.	
+
+• RAG Accuracy: 0 major findings in Program Audit/QA regarding status reporting accuracy.
+
+• Change Control: 100% of scope changes documented and CCB-approved before implementation.
+
+• Risk Cadence: Weekly updates on 100% of "High" criticality risks.
